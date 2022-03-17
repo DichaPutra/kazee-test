@@ -21,6 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('/createuser', [HomeController::class, 'createUser'])->name('createuser');
+Route::get('/createuserform', [HomeController::class, 'createUserForm'])->name('createuserform');
+Route::post('/createuser', [HomeController::class, 'createUser'])->name('createuser');
 Route::get('/updateuser', [HomeController::class, 'updateUser'])->name('updateuser');
 Route::get('/deleteuser/{uid}', [HomeController::class, 'deleteUser'])->name('deleteuser');
