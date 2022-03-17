@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class HomeController extends Controller
-{
+class HomeController extends Controller {
+
     /**
      * Create a new controller instance.
      *
@@ -25,6 +25,24 @@ class HomeController extends Controller
     public function index()
     {
         $UsersData = User::all();
-        return view('home',['UsersData' => $UsersData]);
+        return view('home', ['UsersData' => $UsersData]);
     }
+
+    public function createUser()
+    {
+        
+    }
+
+    public function updateUser()
+    {
+        
+    }
+
+    public function deleteUser($uid)
+    {
+        $user = User::find($uid);
+        $user->delete();
+        return $this->index();
+    }
+
 }
