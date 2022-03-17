@@ -7,14 +7,14 @@ Langkah-langkah installasi (Dengan Github Repository) :
 - Menuju ke dir htdocs tempat XAMPP di install
 - Jalankan CLI bebas (Command Prompt / Git Bash / Windows PowerShell)
 - Clone Repository dengan menjalankan command 
-	“git clone https://github.com/DichaPutra/technicaltest.git”
+	“git clone https://github.com/DichaPutra/kazee-test.git”
 - Jika telah selesai maka source code telah berhasil diclone pada htdocs
-- Masih pada CLI, masuk ke dalam dir technicaltest.
-	“cd technicaltest”
-- Stelah masuk ke dir technicaltest, install composer.
+- Masih pada CLI, masuk ke dalam dir "kazee-test".
+	“cd kazee-test”
+- Stelah masuk ke dir kazee-test, install composer.
 	“composer install”
 - Copy file .env.example dan rename menjadi .env
-- Masuk ke phpMyAdmin , buat database dengan nama “technicaltest”. 
+- Masuk ke phpMyAdmin , buat database dengan nama sesuai pada setup database pada file .env. 
  Pastikan XAMPP Apache dan MYSQL telah Start.
 - Lakukan Migration deengan menjalankan command 
 	“php artisan migrate”
