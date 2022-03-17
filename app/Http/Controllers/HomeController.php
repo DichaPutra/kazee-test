@@ -37,31 +37,43 @@ class HomeController extends Controller {
 
     public function createUser(Request $request)
     {
-        $this->validator($request->all())->validate();
-        
-//        dd($request->name);
+        // Validate Data
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ])->validate();
+
+        // Insert DB
         User::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'password' => Hash::make($request->password),
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
-
-
         return redirect()->route('home')->with('message', 'Sukses! User telah berhasil ditambahkan');
     }
 
-    protected function validator(array $data)
+    public function updateUserForm($uid)
     {
-        return Validator::make($data, [
-                    'name' => ['required', 'string', 'max:255'],
-                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                    'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $userData = User::where('id', $uid)->first();
+        return view('updateUser', ['userdata' => $userData]);
     }
 
-    public function updateUser()
+    public function updateUser(Request $request)
     {
+        // Validate Data
+        Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ])->validate();
+
+        // update user
+        $user = User::find($request->uid);
+        $user->name = $request->name;
+        $user->password = Hash::make($request->password);
+        $user->save();
         
+        return redirect()->route('home')->with('message', 'Sukses! User telah berhasil diupdate');
     }
 
     public function deleteUser($uid)

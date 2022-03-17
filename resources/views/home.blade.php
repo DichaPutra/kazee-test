@@ -41,7 +41,9 @@
                                 <td><b>{{$user->name}}</b></td>
                                 <td>{{$user->email}}</td>
                                 <td style="text-align: center">
-                                    <button class="btn btn-primary btn-sm"> <i class="fa-solid fa-pen-to-square"></i></button>
+                                    <a href="{{ route('updateuserform',[$user->id])}}" class="btn btn-primary btn-sm"> 
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
                                     <a href="{{ route('deleteuser',[$user->id]) }}">
                                         <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin akan menghapus User tersebut ?');"> <i class="fa fa-trash"></i></button>
                                     </a>
